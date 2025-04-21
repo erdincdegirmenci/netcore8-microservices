@@ -9,7 +9,7 @@ Modern mikroservis mimarisini kullanarak, ölçeklenebilir ve dağıtık sisteml
 
 | Teknoloji            | Açıklama                                            |
 |----------------------|-----------------------------------------------------|
-| **.NET Core 5.0**     | Mikroservis API'lerin geliştirilmesi               |
+| **.NET Core 6.0**     | Mikroservis API'lerin geliştirilmesi               |
 | **Web API**           | RESTful servisler                                  |
 | **Docker**            | Uygulamaların container içinde çalıştırılması      |
 | **RabbitMQ**          | Mesajlaşma altyapısı                               |
