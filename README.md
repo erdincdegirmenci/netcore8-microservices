@@ -26,7 +26,7 @@ Modern mikroservis mimarisini kullanarak, ölçeklenebilir ve dağıtık sisteml
 
 - [.NET 6 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/6.0)
 - [Docker Desktop](https://www.docker.com/products/docker-desktop)
-- Visual Studio 2019/2022 veya VS Code
+- [Visual Studio 2022 (Güncel Sürüm)](https://visualstudio.microsoft.com/tr/vs/)
 
 ### Başlatma
 
