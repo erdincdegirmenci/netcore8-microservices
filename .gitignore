@@ -1,0 +1,29 @@
+## Build results
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+build/
+bld/
+[Bb]in/
+[Oo]bj/
+
+## User-specific files
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+## Visual Studio folders
+.vs/
+
+## Rider
+.idea/
+
+## OS generated
+.DS_Store
+Thumbs.db
+
+## Logs
+*.log
