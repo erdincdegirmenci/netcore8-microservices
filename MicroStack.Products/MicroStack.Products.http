@@ -1,0 +1,6 @@
+@MicroStack.Products_HostAddress = http://localhost:5145
+
+GET {{MicroStack.Products_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
