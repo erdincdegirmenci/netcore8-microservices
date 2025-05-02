@@ -1,0 +1,11 @@
+version: '3.4'
+
+services:
+  microstackdb:
+    image: mongo
+
+  microstack.products:
+    image: ${DOCKER_REGISTRY-}microstackproducts
+    build:
+      context: .
+      dockerfile: MicroStack.Products/Dockerfile

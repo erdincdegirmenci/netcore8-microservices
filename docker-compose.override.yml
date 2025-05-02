@@ -1,0 +1,25 @@
+version: '3.4'
+
+services:
+  microstackdb:
+    container_name: microstackdb
+    restart: always
+    volumes:
+        - ${WEBAPP_STORAGE_HOME}/site:/data/db
+        # - ./data:/data/db
+    ports: 
+        - "27017:27017" 
+
+  microstack.products:
+    container_name: microstackproducts
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=8080
+      - "ProductDatabaseSettings:ConnectionString=mongodb://microstackdb:27017"
+    depends_on:
+      - microstackdb
+    ports:
+      - "8080:8080"
+    volumes:
+      - ${HOME}/ASP.NET/Https:/home/app/.aspnet/https/
+      - ${HOME}/.microsoft/usersecrets/:/root/.microsoft/usersecrets
