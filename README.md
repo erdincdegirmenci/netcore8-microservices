@@ -1,39 +1,41 @@
 # DotNetMicroservices
 
-Bu proje, .NET Core 8.0, Docker, RabbitMQ, Ocelot API Gateway, MongoDB, SQL Server, SignalR ve Microsoft Identity Server gibi teknolojileri temel alan bir **Microservices (Mikroservis) mimarisi** eğitiminde geliştirilmiştir.
+This project was developed as part of a **Microservices architecture** training, based on technologies such as .NET Core 8.0, Docker, RabbitMQ, Ocelot API Gateway, MongoDB, SQL Server, SignalR, and Microsoft Identity Server.
 
-## 🚀 Hedef
-Modern mikroservis mimarisini kullanarak, ölçeklenebilir ve dağıtık sistemlerin geliştirilmesini deneyimlemek.
+## 🚀 Goal
 
-## 🧩 Kullanılan Teknolojiler
+To gain hands-on experience in building scalable and distributed systems using modern microservices architecture.
 
-| Teknoloji            | Açıklama                                            |
-|----------------------|-----------------------------------------------------|
-| **.NET Core 8.0**     | Mikroservis API'lerin geliştirilmesi               |
-| **Web API**           | RESTful servisler                                  |
-| **Docker**            | Uygulamaların container içinde çalıştırılması      |
-| **RabbitMQ**          | Mesajlaşma altyapısı                               |
-| **Ocelot API Gateway**| API geçidi, routing ve yetkilendirme               |
-| **MongoDB**           | NoSQL veritabanı                                   |
-| **SQL Server**        | Relational veritabanı                              |
-| **SignalR**           | Gerçek zamanlı haberleşme                          |
-| **Microsoft Identity**| Kimlik doğrulama ve yetkilendirme çözümü          |
+## 🧩 Technologies Used
 
+| Technology             | Description                                           |
+|------------------------|-------------------------------------------------------|
+| **.NET Core 8.0**       | Development of microservice APIs                     |
+| **Web API**             | RESTful services                                     |
+| **Docker**              | Containerization of applications                     |
+| **RabbitMQ**            | Messaging infrastructure                             |
+| **Ocelot API Gateway**  | API gateway for routing and authorization            |
+| **MongoDB**             | NoSQL database                                       |
+| **SQL Server**          | Relational database                                  |
+| **SignalR**             | Real-time communication                              |
+| **Microsoft Identity**  | Authentication and authorization solution            |
 
-## ⚙️ Kurulum
+## ⚙️ Setup
 
-### Gereksinimler
+### Requirements
 
 - [.NET 8 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/8.0)
 - [Docker Desktop](https://www.docker.com/products/docker-desktop)
-- [Visual Studio 2022](https://visualstudio.microsoft.com/tr/vs/)
+- [Visual Studio 2022](https://visualstudio.microsoft.com/vs/)
 
-### Başlatma
+### Getting Started
 
 ```bash
-# 
+# Clone the repository
 git clone https://github.com/erdincdegirmenci/netcore-microservices.git
 
-# Tüm servisleri docker ile ayağa kaldırın
-docker-compose up --build
+# Navigate into the project folder
+cd netcore-microservices
 
+# Start all services using Docker
+docker-compose up --build
