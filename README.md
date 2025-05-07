@@ -1,6 +1,6 @@
 # DotNetMicroservices
 
-Bu proje, .NET Core 5.0, Docker, RabbitMQ, Ocelot API Gateway, MongoDB, SQL Server, SignalR ve Microsoft Identity Server gibi teknolojileri temel alan bir **Microservices (Mikroservis) mimarisi** eğitiminde geliştirilmiştir.
+Bu proje, .NET Core 8.0, Docker, RabbitMQ, Ocelot API Gateway, MongoDB, SQL Server, SignalR ve Microsoft Identity Server gibi teknolojileri temel alan bir **Microservices (Mikroservis) mimarisi** eğitiminde geliştirilmiştir.
 
 ## 🚀 Hedef
 Modern mikroservis mimarisini kullanarak, ölçeklenebilir ve dağıtık sistemlerin geliştirilmesini deneyimlemek.
