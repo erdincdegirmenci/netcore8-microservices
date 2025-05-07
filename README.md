@@ -24,7 +24,7 @@ Modern mikroservis mimarisini kullanarak, ölçeklenebilir ve dağıtık sisteml
 
 ### Gereksinimler
 
-- [.NET 6 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/6.0)
+- [.NET 8 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/8.0)
 - [Docker Desktop](https://www.docker.com/products/docker-desktop)
 - [Visual Studio 2022](https://visualstudio.microsoft.com/tr/vs/)
 
