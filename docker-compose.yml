@@ -9,3 +9,10 @@ services:
     build:
       context: .
       dockerfile: MicroStack.Products/Dockerfile
+
+  microstack.sourcing:
+    image: ${DOCKER_REGISTRY-}microstacksourcing
+    build:
+      context: .
+      dockerfile: MicroStack.Sourcing/Dockerfile
+
