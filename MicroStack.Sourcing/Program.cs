@@ -1,3 +1,6 @@
+using EventBusRabbitMQ;
+using EventBusRabbitMQ.Producer;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 using MicroStack.Sourcing.Data;
@@ -5,6 +8,7 @@ using MicroStack.Sourcing.Data.Interfaces;
 using MicroStack.Sourcing.Repositories;
 using MicroStack.Sourcing.Repositories.Interfaces;
 using MicroStack.Sourcing.Settings;
+using RabbitMQ.Client;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -30,6 +34,34 @@ builder.Services.AddSingleton<ISourcingDatabaseSettings, SourcingDatabaseSetting
 builder.Services.AddTransient<ISourcingContext, SourcingContext>();
 builder.Services.AddTransient<IAuctionRepository, AuctionRepository>();
 builder.Services.AddTransient<IBidRepository, BidRepository>();
+builder.Services.AddSingleton<IRabbitMQPersistentConnection>(sp =>
+{
+    var configuration = builder.Configuration;
+    var logger = sp.GetRequiredService<ILogger<DefaultRabbitMQPersistentConnection>>();
+    var factory = new ConnectionFactory()
+    {
+        HostName = configuration["EventBus:HostName"]
+    };
+
+    if (!string.IsNullOrEmpty(configuration["EventBus:UserName"]))
+    {
+        factory.UserName = configuration["EventBus:UserName"];
+    }
+
+    if (!string.IsNullOrEmpty(configuration["EventBus:Password"]))
+    {
+        factory.Password = configuration["EventBus:Password"];
+    }
+
+    var retryCount = 5;
+    if (!string.IsNullOrEmpty(configuration["EventBus:RetryCount"]))
+    {
+        retryCount = int.Parse(configuration["EventBus:RetryCount"]);
+    }
+    return new DefaultRabbitMQPersistentConnection(factory, retryCount, logger);
+});
+builder.Services.AddSingleton<EventBusRabbitMQProducer>();
+builder.Services.AddAutoMapper(typeof(Program));
 #endregion
 var app = builder.Build();
 

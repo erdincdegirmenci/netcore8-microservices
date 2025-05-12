@@ -6,9 +6,15 @@ services:
     restart: always
     volumes:
         - ${WEBAPP_STORAGE_HOME}/site:/data/db
-        # - ./data:/data/db
     ports: 
         - "27017:27017" 
+
+  rabbitmq:
+    container_name: rabbitmq
+    restart: always
+    ports:
+       - "5672:5672"
+       - "15672:15672"
 
   microstack.products:
     container_name: microstackproducts
@@ -32,8 +38,10 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_HTTP_PORTS=8080
       - "SourcingDatabaseSettings:ConnectionString=mongodb://microstackdb:27017"
+      - "EventBus:HostName=rabbitmq"
     depends_on:
       - microstackdb
+      - rabbitmq
     ports:
       - "8081:8080"
     volumes:
