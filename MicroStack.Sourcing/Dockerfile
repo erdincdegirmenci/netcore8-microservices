@@ -9,6 +9,7 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["MicroStack.Sourcing/MicroStack.Sourcing.csproj", "MicroStack.Sourcing/"]
+COPY ["EventBusRabbitMQ/EventBusRabbitMQ.csproj", "EventBusRabbitMQ/"]
 RUN dotnet restore "./MicroStack.Sourcing/MicroStack.Sourcing.csproj"
 COPY . .
 WORKDIR "/src/MicroStack.Sourcing"

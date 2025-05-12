@@ -4,6 +4,9 @@ services:
   microstackdb:
     image: mongo
 
+  rabbitmq:
+    image: rabbitmq:3-management
+
   microstack.products:
     image: ${DOCKER_REGISTRY-}microstackproducts
     build:
