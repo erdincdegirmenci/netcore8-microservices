@@ -1,5 +1,4 @@
-﻿using OrderEntity = Order.Domain.Entities.Order;
-
+﻿using Order.Domain.Entities;
 using Order.Domain.Repositories.Base;
 
 namespace Order.Domain.Repositories
