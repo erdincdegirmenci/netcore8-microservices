@@ -73,3 +73,18 @@ services:
       - ${HOME}/ASP.NET/Https:/home/app/.aspnet/https/
       - ${HOME}/.microsoft/usersecrets/:/root/.microsoft/usersecrets
 
+
+  microstack.apigateway:
+    container_name: microstackapigateway
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=8080
+    depends_on:
+      - microstack.products
+      - microstack.sourcing
+      - microstack.order
+    ports:
+      - "5000:8080"
+    volumes:
+      - ${HOME}/ASP.NET/Https:/home/app/.aspnet/https/
+      - ${HOME}/.microsoft/usersecrets/:/root/.microsoft/usersecrets

@@ -1,0 +1,140 @@
+﻿{
+  "Routes": [
+    //product
+    {
+      "DownstreamPathTemplate": "/api/v1/Product",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "microstack.products",
+          "Port": 8080
+        }
+      ],
+      "UpstreamPathTemplate": "/Product",
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT" ]
+    },
+
+    {
+      "DownstreamPathTemplate": "/api/v1/Product/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "microstack.products",
+          "Port": 8080
+        }
+      ],
+      "UpstreamPathTemplate": "/Product/{id}",
+      "UpstreamHttpMethod": [ "GET", "DELETE" ]
+    },
+
+    //sourcing
+
+    //auction
+    {
+      "DownstreamPathTemplate": "/api/v1/Auction",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "microstack.sourcing",
+          "Port": 8080
+        }
+      ],
+      "UpstreamPathTemplate": "/Auction",
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT" ]
+    },
+
+    {
+      "DownstreamPathTemplate": "/api/v1/Auction/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "microstack.sourcing",
+          "Port": 8080
+        }
+      ],
+      "UpstreamPathTemplate": "/Auction/{id}",
+      "UpstreamHttpMethod": [ "GET", "DELETE" ]
+    },
+
+    {
+      "DownstreamPathTemplate": "/api/v1/Auction/CompleteAuction/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "microstack.sourcing",
+          "Port": 8080
+        }
+      ],
+      "UpstreamPathTemplate": "/Auction/CompleteAuction/{id}",
+      "UpstreamHttpMethod": [ "POST" ]
+    },
+
+    //bid
+    {
+      "DownstreamPathTemplate": "/api/v1/Bid",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "microstack.sourcing",
+          "Port": 8080
+        }
+      ],
+      "UpstreamPathTemplate": "/Bid",
+      "UpstreamHttpMethod": [ "POST" ]
+    },
+
+    {
+      "DownstreamPathTemplate": "/api/v1/Bid/GetBidsByAuctionId/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "microstack.sourcing",
+          "Port": 8080
+        }
+      ],
+      "UpstreamPathTemplate": "/Bid/GetBidsByAuctionId/{id}",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+
+    {
+      "DownstreamPathTemplate": "/api/v1/Bid/GetWinnerBid/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "microstack.sourcing",
+          "Port": 8080
+        }
+      ],
+      "UpstreamPathTemplate": "/Bid/GetWinnerBid/{id}",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+
+    //order
+    {
+      "DownstreamPathTemplate": "/api/v1/Order/GetOrdersByUserName/{userName}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "microstack.sourcing",
+          "Port": 8080
+        }
+      ],
+      "UpstreamPathTemplate": "/Order/GetOrdersByUserName/{userName}",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+
+    {
+      "DownstreamPathTemplate": "/api/v1/Order",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "microstack.sourcing",
+          "Port": 8080
+        }
+      ],
+      "UpstreamPathTemplate": "/Order",
+      "UpstreamHttpMethod": [ "GET" ]
+    }
+
+  ]
+}
