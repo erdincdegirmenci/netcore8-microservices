@@ -29,6 +29,7 @@ namespace Order.Infrastructure.Data
                     SellerUserName = "seller_one",
                     ProductId = Guid.NewGuid().ToString(),
                     UnitPrice = 199.99m,
+                    TotalPrice = 1000,
                     CreatedAt = DateTime.UtcNow.AddDays(-5)
                 },
                 new OrderEntity
@@ -37,6 +38,7 @@ namespace Order.Infrastructure.Data
                     SellerUserName = "seller_two",
                     ProductId = Guid.NewGuid().ToString(),
                     UnitPrice = 349.50m,
+                    TotalPrice = 2000,
                     CreatedAt = DateTime.UtcNow.AddDays(-3)
                 },
                 new OrderEntity
@@ -45,6 +47,7 @@ namespace Order.Infrastructure.Data
                     SellerUserName = "seller_three",
                     ProductId = Guid.NewGuid().ToString(),
                     UnitPrice = 89.90m,
+                    TotalPrice = 3000,
                     CreatedAt = DateTime.UtcNow
                 }
             };
