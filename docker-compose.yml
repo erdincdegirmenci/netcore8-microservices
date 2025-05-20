@@ -29,3 +29,10 @@ services:
       context: .
       dockerfile: MicroStack.Order/Dockerfile
 
+
+  microstack.apigateway:
+    image: ${DOCKER_REGISTRY-}microstackapigateway
+    build:
+      context: .
+      dockerfile: MicroStack.APIGateway/Dockerfile
+

@@ -6,7 +6,8 @@
       "serviceActions": {
         "microstack.products": "StartDebugging",
         "microstack.sourcing": "StartDebugging",
-        "microstack.order": "StartDebugging"
+        "microstack.order": "StartDebugging",
+        "microstack.apigateway": "StartDebugging"
       }
     }
   }

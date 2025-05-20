@@ -1,0 +1,6 @@
+@MicroStack.APIGateway_HostAddress = http://localhost:5138
+
+GET {{MicroStack.APIGateway_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
