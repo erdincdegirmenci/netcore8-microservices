@@ -16,6 +16,14 @@ services:
        - "5672:5672"
        - "15672:15672"
 
+  sourcingsqldb:
+    container_name: sourcingsqldb
+    ports:
+       - "1433:1433"
+    environment:
+       SA_PASSWORD: "Odb12345678*"
+       ACCEPT_EULA: "Y"
+
   microstack.products:
     container_name: microstackproducts
     environment:
@@ -44,6 +52,23 @@ services:
       - rabbitmq
     ports:
       - "8081:8080"
+    volumes:
+      - ${HOME}/ASP.NET/Https:/home/app/.aspnet/https/
+      - ${HOME}/.microsoft/usersecrets/:/root/.microsoft/usersecrets
+
+
+  microstack.order:
+    container_name: microstackorder
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=8080
+      - "ConnectionStrings:OrderConnection=Server=sourcingsqldb;Database=ORDERDB;User Id=sa;Password=Odb12345678*;TrustServerCertificate=True;"  
+      - "EventBus:HostName=rabbitmq"
+    depends_on:
+      - sourcingsqldb
+      - rabbitmq
+    ports:
+      - "8082:8080"
     volumes:
       - ${HOME}/ASP.NET/Https:/home/app/.aspnet/https/
       - ${HOME}/.microsoft/usersecrets/:/root/.microsoft/usersecrets

@@ -7,6 +7,9 @@ services:
   rabbitmq:
     image: rabbitmq:3-management
 
+  sourcingsqldb:
+    image: mcr.microsoft.com/mssql/server
+
   microstack.products:
     image: ${DOCKER_REGISTRY-}microstackproducts
     build:
@@ -18,4 +21,11 @@ services:
     build:
       context: .
       dockerfile: MicroStack.Sourcing/Dockerfile
+
+
+  microstack.order:
+    image: ${DOCKER_REGISTRY-}microstackorder
+    build:
+      context: .
+      dockerfile: MicroStack.Order/Dockerfile
 
