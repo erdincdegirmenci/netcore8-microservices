@@ -5,6 +5,7 @@ using MicroStack.Products.Data.Interfaces;
 using MicroStack.Products.Repositories;
 using MicroStack.Products.Repositories.Interfaces;
 using MicroStack.Products.Settings;
+using Scalar.AspNetCore;
 try
 {
     var builder = WebApplication.CreateBuilder(args);
@@ -36,8 +37,17 @@ try
     // Configure the HTTP request pipeline.
     if (app.Environment.IsDevelopment())
     {
-        app.UseSwagger();
-        app.UseSwaggerUI(s=> s.SwaggerEndpoint("/swagger/v1/swagger.json", "MicroStack.Products v1"));
+        app.UseSwagger(opt =>
+        {
+            opt.RouteTemplate = "openapi/{documentName}.json";
+        });
+        app.MapScalarApiReference(opt =>
+        {
+            opt.Title = "MicroStack.Products v1";
+            opt.Theme = ScalarTheme.Mars;
+            opt.DefaultHttpClient = new(ScalarTarget.Http, ScalarClient.Http11);
+        });
+        //app.UseSwaggerUI(s=> s.SwaggerEndpoint("/swagger/v1/swagger.json", "MicroStack.Products v1"));
     }
 
     app.UseHttpsRedirection();
