@@ -1,12 +1,12 @@
-# DotNetMicroservices
+# Net 8 Microservices
 
 This project was developed as part of a **Microservices architecture** training, based on technologies such as .NET Core 8.0, Docker, RabbitMQ, Ocelot API Gateway, MongoDB, SQL Server, SignalR, and Microsoft Identity Server.
 
-## 🚀 Goal
+##  Goal
 
 To gain hands-on experience in building scalable and distributed systems using modern microservices architecture.
 
-## 🧩 Technologies Used
+##  Technologies Used
 
 | Technology             | Description                                           |
 |------------------------|-------------------------------------------------------|
@@ -20,8 +20,7 @@ To gain hands-on experience in building scalable and distributed systems using m
 | **SignalR**             | Real-time communication                              |
 | **Microsoft Identity**  | Authentication and authorization solution            |
 
-## ⚙️ Setup
-
+## ️ Setup
 ### Requirements
 
 - [.NET 8 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/8.0)
@@ -32,8 +31,8 @@ To gain hands-on experience in building scalable and distributed systems using m
 
 ```bash
 # Clone the repository
-git clone https://github.com/erdincdegirmenci/netcore-microservices.git
-
+git clone https://github.com/erdincdegirmenci/netcore8-microservices.git
+=======
 # Navigate into the project folder
 cd netcore-microservices
 
