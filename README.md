@@ -1,4 +1,4 @@
-# DotNetMicroservices
+# Net 8 Microservices
 
 This project was developed as part of a **Microservices architecture** training, based on technologies such as .NET Core 8.0, Docker, RabbitMQ, Ocelot API Gateway, MongoDB, SQL Server, SignalR, and Microsoft Identity Server.
 
