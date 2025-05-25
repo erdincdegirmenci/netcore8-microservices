@@ -4,7 +4,7 @@ namespace MicroStack.UI.ViewModel
 {
     public class AuctionViewModel
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
         [Required(ErrorMessage = "Please fill Name")]
         public string Name { get; set; }
 
@@ -24,7 +24,7 @@ namespace MicroStack.UI.ViewModel
         public DateTime FinishedAt { get; set; }
         public DateTime CreatedAt { get; set; }
         public int Status { get; set; }
-        public int SellerId { get; set; }
-        public List<string> IncludedSellers { get; set; }
+        public string SellerId { get; set; }
+        public List<string> IncludedSellers { get; set; } = new List<string>();
     }
 }

@@ -1,4 +1,3 @@
-using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using MicroStack.Core.Entitties;
@@ -7,6 +6,8 @@ using MicroStack.Core.Repositories.Base;
 using MicroStack.Infrastructure.Data;
 using MicroStack.Infrastructure.Repository;
 using MicroStack.Infrastructure.Repository.Base;
+using MicroStack.UI.Clients;
+using MicroStack.UI.Helper;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -42,8 +43,18 @@ builder.Services.ConfigureApplicationCookie(options =>
     options.LoginPath = $"/Home/Login";
     options.LogoutPath = $"/Home/Logout";
 });
+builder.Services.AddHttpClient();
+builder.Services.AddHttpClient<ProductClient>();
+builder.Services.AddHttpClient<AuctionClient>();
+builder.Services.AddHttpClient<BidClient>();
+builder.Services.AddSession(opt =>
+{
+    opt.IdleTimeout = TimeSpan.FromMinutes(20);
+});
 
 var app = builder.Build();
+
+DbSeeder.CreateAndSeedDatabase(app);
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -60,6 +71,7 @@ app.UseRouting();
 
 app.UseAuthorization();
 app.UseAuthentication();
+app.UseSession();
 
 app.MapControllerRoute(
     name: "default",
@@ -67,4 +79,7 @@ app.MapControllerRoute(
 
 app.MapRazorPages();
 
+
 app.Run();
+
+

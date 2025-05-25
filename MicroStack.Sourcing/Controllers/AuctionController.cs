@@ -34,7 +34,7 @@ public class AuctionController : ControllerBase
         return Ok(auctions);
     }
 
-    [HttpGet("{id}")]
+    [HttpGet("{id}", Name = "GetAuction")]
     public async Task<ActionResult<Auction>> GetAuction(string id)
     {
         var auction = await _auctionRepository.GetAuction(id);
@@ -89,7 +89,7 @@ public class AuctionController : ControllerBase
         return Ok(deleted);
     }
     [HttpPost("CompleteAuction")]
-    public async Task<ActionResult> CompleteAuction(string id)
+    public async Task<ActionResult> CompleteAuction([FromBody] string id)
     {
         Auction auction = await _auctionRepository.GetAuction(id);
         if (auction == null)

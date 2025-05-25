@@ -5,6 +5,7 @@ using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 using MicroStack.Sourcing.Data;
 using MicroStack.Sourcing.Data.Interfaces;
+using MicroStack.Sourcing.Hubs;
 using MicroStack.Sourcing.Repositories;
 using MicroStack.Sourcing.Repositories.Interfaces;
 using MicroStack.Sourcing.Settings;
@@ -62,6 +63,19 @@ builder.Services.AddSingleton<IRabbitMQPersistentConnection>(sp =>
 });
 builder.Services.AddSingleton<EventBusRabbitMQProducer>();
 builder.Services.AddAutoMapper(typeof(Program));
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("CorsPolicy", builder =>
+    {
+        builder
+            .WithOrigins("https://localhost:44393") // UI adresi
+            .AllowAnyHeader()
+            .AllowAnyMethod()
+            .AllowCredentials();
+    });
+});
+
+builder.Services.AddSignalR();
 #endregion
 var app = builder.Build();
 
@@ -71,8 +85,16 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI(s => s.SwaggerEndpoint("/swagger/v1/swagger.json", "MicroStack.Sourcing v1"));
 }
+
+
+app.UseHttpsRedirection();
+
+app.UseCors("CorsPolicy");
+
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.MapHub<AuctionHub>("/auctionhub");
 
 app.Run();
