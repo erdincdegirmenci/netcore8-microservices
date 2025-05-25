@@ -21,7 +21,6 @@ To gain hands-on experience in building scalable and distributed systems using m
 | **Microsoft Identity**  | Authentication and authorization solution            |
 
 ## ️ Setup
-
 ### Requirements
 
 - [.NET 8 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/8.0)
@@ -33,7 +32,7 @@ To gain hands-on experience in building scalable and distributed systems using m
 ```bash
 # Clone the repository
 git clone https://github.com/erdincdegirmenci/netcore8-microservices.git
-
+=======
 # Navigate into the project folder
 cd netcore-microservices
 
