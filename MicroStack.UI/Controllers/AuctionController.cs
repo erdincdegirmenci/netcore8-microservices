@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MicroStack.Core.Repositories;
+using MicroStack.Core.ResultModels;
 using MicroStack.UI.Clients;
 using MicroStack.UI.ViewModel;
 
@@ -11,12 +12,14 @@ namespace MicroStack.UI.Controllers
         private readonly IUserRepository _userRepository;
         private readonly ProductClient _productClient;
         private readonly AuctionClient _auctionClient;
+        private readonly BidClient _bidClient;
 
-        public AuctionController(IUserRepository userRepository, ProductClient productClient, AuctionClient auctionClient)
+        public AuctionController(IUserRepository userRepository, ProductClient productClient, AuctionClient auctionClient, BidClient bidClient)
         {
             _userRepository = userRepository;
             _productClient = productClient;
             _auctionClient = auctionClient;
+            _bidClient = bidClient;
         }
 
         public async Task<IActionResult> Index()
@@ -43,18 +46,45 @@ namespace MicroStack.UI.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(AuctionViewModel model)
         {
-            model.Status = 1;
+            model.Status = default(int);
             model.CreatedAt = DateTime.Now;
-            //model.IncludedSellers.Add(model.SellerId);
+            model.IncludedSellers.Add(model.SellerId);
             var createAuction = await _auctionClient.CreateAuction(model);
             if (createAuction.IsSuccess)
                 return RedirectToAction("Index");
             return View(model);
         }
 
-        public IActionResult Detail()
+        public async Task<IActionResult> Detail(string id)
         {
-            return View();
+            AuctionBidsViewModel model = new AuctionBidsViewModel();
+
+            var auctionResponse = await _auctionClient.GetAuctionById(id);
+            var bidsResponse = await _bidClient.GelAllBidsByAuctionId(id);
+
+            model.SellerUserName = HttpContext.User?.Identity.Name;
+            model.AuctionId = auctionResponse.Data.Id;
+            model.ProductId = auctionResponse.Data.ProductId;
+            model.Bids = bidsResponse.Data;
+            var isAdmin = HttpContext.Session.GetString("IsAdmin");
+            model.IsAdmin = Convert.ToBoolean(isAdmin);
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<Result<string>> SendBid(BidViewModel model)
+        {
+            model.CreateAt = DateTime.Now;
+            var sendBidResponse = await _bidClient.SendBid(model);
+            return sendBidResponse;
+        }
+
+        [HttpPost]
+        public async Task<Result<string>> CompleteBid(string id)
+        {
+            var completeBidResponse = await _auctionClient.CompleteBid(id);
+            return completeBidResponse;
         }
     }
 }

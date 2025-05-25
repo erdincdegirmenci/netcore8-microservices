@@ -8,7 +8,6 @@ namespace MicroStack.Core.Common
 {
     public static class CommonInfo
     {
-        public static string LocalProductBaseAddress = "https://localhost:44395";
-        public static string LocalAuctionBaseAddress = "http://localhost:37524";
+        public static string BaseAddress = "https://localhost:5000";
     }
 }

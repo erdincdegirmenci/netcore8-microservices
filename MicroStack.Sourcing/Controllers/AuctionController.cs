@@ -89,7 +89,7 @@ public class AuctionController : ControllerBase
         return Ok(deleted);
     }
     [HttpPost("CompleteAuction")]
-    public async Task<ActionResult> CompleteAuction(string id)
+    public async Task<ActionResult> CompleteAuction([FromBody] string id)
     {
         Auction auction = await _auctionRepository.GetAuction(id);
         if (auction == null)

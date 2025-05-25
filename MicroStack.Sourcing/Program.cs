@@ -5,6 +5,7 @@ using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 using MicroStack.Sourcing.Data;
 using MicroStack.Sourcing.Data.Interfaces;
+using MicroStack.Sourcing.Hubs;
 using MicroStack.Sourcing.Repositories;
 using MicroStack.Sourcing.Repositories.Interfaces;
 using MicroStack.Sourcing.Settings;
@@ -62,6 +63,11 @@ builder.Services.AddSingleton<IRabbitMQPersistentConnection>(sp =>
 });
 builder.Services.AddSingleton<EventBusRabbitMQProducer>();
 builder.Services.AddAutoMapper(typeof(Program));
+builder.Services.AddCors(o => o.AddPolicy("CorsPolicy", builder  =>
+{
+    builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader().AllowCredentials().WithOrigins("https://localhost:44398");
+}));
+builder.Services.AddSignalR();
 #endregion
 var app = builder.Build();
 
@@ -74,5 +80,7 @@ if (app.Environment.IsDevelopment())
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.MapHub<AuctionHub>("/auctionhub");
 
 app.Run();

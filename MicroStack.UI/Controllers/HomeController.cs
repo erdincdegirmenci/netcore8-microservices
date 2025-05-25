@@ -40,6 +40,7 @@ namespace MicroStack.UI.Controllers
                     var result = await _signInManager.PasswordSignInAsync(user, loginViewModel.Password, false, false);
                     if (result.Succeeded)
                     {
+                        HttpContext.Session.SetString("IsAdmin", user.IsAdmin.ToString());
                         //return RedirectToAction("Index");
                         return LocalRedirect(returnURL);
                     }

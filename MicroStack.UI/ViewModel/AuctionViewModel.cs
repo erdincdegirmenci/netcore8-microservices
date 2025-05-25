@@ -24,7 +24,7 @@ namespace MicroStack.UI.ViewModel
         public DateTime FinishedAt { get; set; }
         public DateTime CreatedAt { get; set; }
         public int Status { get; set; }
-        public int SellerId { get; set; }
+        public string SellerId { get; set; }
         public List<string> IncludedSellers { get; set; } = new List<string>();
     }
 }

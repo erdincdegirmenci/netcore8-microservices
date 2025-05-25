@@ -6,6 +6,7 @@ namespace MicroStack.Sourcing.Repositories.Interfaces
     {
         Task SendBid(Bid bid);
         Task<List<Bid>> GetBidByAuctionId(string auctionId);
+        Task<List<Bid>> GetAllBidsByAuctionId(string id);
         Task<Bid> GetWinnerBid(string auctionId);
     }
 }

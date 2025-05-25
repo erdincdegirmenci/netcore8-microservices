@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MicroStack.Sourcing.Entitites;
 using MicroStack.Sourcing.Repositories.Interfaces;
+using System.Net;
 
 namespace MicroStack.Sourcing.Controllers
 {
@@ -41,6 +42,14 @@ namespace MicroStack.Sourcing.Controllers
                 _logger.LogWarning("No bids found for auctionId: {AuctionId}", auctionId);
                 return NotFound();
             }
+            return Ok(bids);
+        }
+        [HttpGet("GetAllBidsByAuctionId")]
+        [ProducesResponseType(typeof(List<Bid>), (int)HttpStatusCode.OK)]
+        public async Task<ActionResult<IEnumerable<Bid>>> GetAllBidsByAuctionId(string id)
+        {
+            IEnumerable<Bid> bids = await _bidRepository.GetAllBidsByAuctionId(id);
+
             return Ok(bids);
         }
 

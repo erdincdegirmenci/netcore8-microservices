@@ -46,6 +46,11 @@ builder.Services.ConfigureApplicationCookie(options =>
 builder.Services.AddHttpClient();
 builder.Services.AddHttpClient<ProductClient>();
 builder.Services.AddHttpClient<AuctionClient>();
+builder.Services.AddHttpClient<BidClient>();
+builder.Services.AddSession(opt =>
+{
+    opt.IdleTimeout = TimeSpan.FromMinutes(20);
+});
 
 var app = builder.Build();
 
@@ -66,6 +71,7 @@ app.UseRouting();
 
 app.UseAuthorization();
 app.UseAuthentication();
+app.UseSession();
 
 app.MapControllerRoute(
     name: "default",
