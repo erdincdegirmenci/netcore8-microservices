@@ -34,7 +34,7 @@ public class AuctionController : ControllerBase
         return Ok(auctions);
     }
 
-    [HttpGet("{id}")]
+    [HttpGet("{id}", Name = "GetAuction")]
     public async Task<ActionResult<Auction>> GetAuction(string id)
     {
         var auction = await _auctionRepository.GetAuction(id);

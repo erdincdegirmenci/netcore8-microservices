@@ -50,7 +50,7 @@ namespace MicroStack.UI.Clients
 
         public async Task<Result<AuctionViewModel>> GetAuctionById(string id)
         {
-            var response = await _client.GetAsync("/Auction" + id);
+            var response = await _client.GetAsync("/Auction/" + id);
             if (response.IsSuccessStatusCode)
             {
                 var responseData = await response.Content.ReadAsStringAsync();

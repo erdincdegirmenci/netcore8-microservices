@@ -8,6 +8,6 @@ namespace MicroStack.Core.Common
 {
     public static class CommonInfo
     {
-        public static string BaseAddress = "https://localhost:5000";
+        public static string BaseAddress = "http://localhost:5000";
     }
 }

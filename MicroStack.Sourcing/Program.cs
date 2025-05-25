@@ -63,10 +63,18 @@ builder.Services.AddSingleton<IRabbitMQPersistentConnection>(sp =>
 });
 builder.Services.AddSingleton<EventBusRabbitMQProducer>();
 builder.Services.AddAutoMapper(typeof(Program));
-builder.Services.AddCors(o => o.AddPolicy("CorsPolicy", builder  =>
+builder.Services.AddCors(options =>
 {
-    builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader().AllowCredentials().WithOrigins("https://localhost:44398");
-}));
+    options.AddPolicy("CorsPolicy", builder =>
+    {
+        builder
+            .WithOrigins("https://localhost:44393") // UI adresi
+            .AllowAnyHeader()
+            .AllowAnyMethod()
+            .AllowCredentials();
+    });
+});
+
 builder.Services.AddSignalR();
 #endregion
 var app = builder.Build();
@@ -77,6 +85,12 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI(s => s.SwaggerEndpoint("/swagger/v1/swagger.json", "MicroStack.Sourcing v1"));
 }
+
+
+app.UseHttpsRedirection();
+
+app.UseCors("CorsPolicy");
+
 app.UseAuthorization();
 
 app.MapControllers();
